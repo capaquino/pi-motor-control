@@ -130,13 +130,14 @@ class Stepper(object):
 			dir.close()
 
 	def MoveAbs(self, targetPosition_steps):
+		self.MoveRel(targetPosition_steps - self.currentPosition)
 		pass
 
 # gpiozero uses BCM numbering, not changeable to BOARD numbering
 # BCM 23 = step pin = 16
 # BCM 24 = dir pin = 18
 if __name__ == '__main__':
-	s = Stepper(Board[16], Board[18], 3200)
+	s = Stepper(23, 24, 10000)
 	s.MoveRel(3200)
 	print(s.currentPosition)
 	s.MoveRel(3200)
